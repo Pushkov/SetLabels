@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SetLabelsForm));
             this.btnExcludeChange = new System.Windows.Forms.Button();
             this.txtExlude = new System.Windows.Forms.TextBox();
             this.viewsPanel = new System.Windows.Forms.FlowLayoutPanel();
@@ -37,14 +38,10 @@
             this.btnRename = new System.Windows.Forms.Button();
             this.btnReRead = new System.Windows.Forms.Button();
             this.titlePanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.add_button1 = new System.Windows.Forms.Button();
             this.checkOut = new System.Windows.Forms.CheckBox();
             this.checkColor = new System.Windows.Forms.CheckBox();
             this.btnAddSurf = new System.Windows.Forms.Button();
             this.btnDelSurf = new System.Windows.Forms.Button();
-            this.read_button2 = new System.Windows.Forms.Button();
-            this.del_button3 = new System.Windows.Forms.Button();
-            this.edit_button4 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -106,7 +103,7 @@
             // 
             this.lbInfo.BackColor = System.Drawing.SystemColors.Menu;
             this.lbInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lbInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lbInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lbInfo.Location = new System.Drawing.Point(6, 14);
             this.lbInfo.Multiline = true;
             this.lbInfo.Name = "lbInfo";
@@ -147,17 +144,6 @@
             this.titlePanel.Name = "titlePanel";
             this.titlePanel.Size = new System.Drawing.Size(905, 52);
             this.titlePanel.TabIndex = 9;
-            // 
-            // add_button1
-            // 
-            this.add_button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.add_button1.Location = new System.Drawing.Point(185, 491);
-            this.add_button1.Name = "add_button1";
-            this.add_button1.Size = new System.Drawing.Size(75, 23);
-            this.add_button1.TabIndex = 10;
-            this.add_button1.Text = "add";
-            this.add_button1.UseVisualStyleBackColor = true;
-            this.add_button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // checkOut
             // 
@@ -207,58 +193,22 @@
             this.btnDelSurf.UseVisualStyleBackColor = true;
             this.btnDelSurf.Click += new System.EventHandler(this.btnDelSurf_Click);
             // 
-            // read_button2
-            // 
-            this.read_button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.read_button2.Location = new System.Drawing.Point(185, 518);
-            this.read_button2.Name = "read_button2";
-            this.read_button2.Size = new System.Drawing.Size(75, 23);
-            this.read_button2.TabIndex = 14;
-            this.read_button2.Text = "read data";
-            this.read_button2.UseVisualStyleBackColor = true;
-            this.read_button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // del_button3
-            // 
-            this.del_button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.del_button3.Location = new System.Drawing.Point(266, 492);
-            this.del_button3.Name = "del_button3";
-            this.del_button3.Size = new System.Drawing.Size(75, 23);
-            this.del_button3.TabIndex = 15;
-            this.del_button3.Text = "del";
-            this.del_button3.UseVisualStyleBackColor = true;
-            this.del_button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // edit_button4
-            // 
-            this.edit_button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.edit_button4.Location = new System.Drawing.Point(266, 518);
-            this.edit_button4.Name = "edit_button4";
-            this.edit_button4.Size = new System.Drawing.Size(75, 23);
-            this.edit_button4.TabIndex = 16;
-            this.edit_button4.Text = "edit ";
-            this.edit_button4.UseVisualStyleBackColor = true;
-            this.edit_button4.Click += new System.EventHandler(this.edit_button4_Click);
-            // 
             // SetLabelsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 553);
-            this.Controls.Add(this.edit_button4);
-            this.Controls.Add(this.del_button3);
-            this.Controls.Add(this.read_button2);
             this.Controls.Add(this.btnDelSurf);
             this.Controls.Add(this.btnAddSurf);
             this.Controls.Add(this.checkColor);
             this.Controls.Add(this.checkOut);
-            this.Controls.Add(this.add_button1);
             this.Controls.Add(this.titlePanel);
             this.Controls.Add(this.btnReRead);
             this.Controls.Add(this.btnRename);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.viewsPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(930, 1024);
             this.MinimumSize = new System.Drawing.Size(930, 350);
             this.Name = "SetLabelsForm";
@@ -284,15 +234,11 @@
         private System.Windows.Forms.Button btnRename;
         private System.Windows.Forms.Button btnReRead;
         private System.Windows.Forms.FlowLayoutPanel viewsPanel;
-        private System.Windows.Forms.Button add_button1;
         private System.Windows.Forms.TextBox lbInfo;
         private System.Windows.Forms.CheckBox checkOut;
         private System.Windows.Forms.CheckBox checkColor;
         private System.Windows.Forms.Button btnAddSurf;
         private System.Windows.Forms.Button btnDelSurf;
-        private System.Windows.Forms.Button read_button2;
-        private System.Windows.Forms.Button del_button3;
-        private System.Windows.Forms.Button edit_button4;
     }
 }
 
