@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<settings>
+  <letters>ЙЗХЪЫЬОЧ</letters>
+  <out>0</out>
+  <color>1</color>
+  <projColor>#A194B3</projColor>
+  <auxColor>#f3a3ab</auxColor>
+  <sectColor>#c5f9c6</sectColor>
+  <detColor>#FFFBCE</detColor>
+  <gtolColor>#bdf7ee</gtolColor>
+  <surfColor>#9cadfa</surfColor>
+  <outColor>#8B9EAA</outColor>
+</settings>
