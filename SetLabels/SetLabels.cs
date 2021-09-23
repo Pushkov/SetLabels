@@ -128,9 +128,7 @@ namespace SetLabels
                     clearPanels();
                     listViews = new ListViews();
                     viewService.readViews(model, ref listViews);
-                    // ToDo связь допусков и баз   или тут или там
                     labelService.generateLabels(ref listViews, isOut);
-
                     drawAllLists(listViews);
                     info("Чтение буквенных меток закончено.");
                 }
@@ -155,12 +153,16 @@ namespace SetLabels
                 model.SetDisplayWhenAdded(false);
                 info("Идет обновлние буквенных обозначений");
                 labelService.setLabelsToViews(ref listViews);
-                // ToDo связь допусков и баз   или тут или там
-                gtolService.relinkGtolByTatumtag(ref listViews);
-                //
+                if (isLinkGtols)
+                {
+                    gtolService.relinkGtolByTatumtag(ref listViews);
+                }
+                if (isSheetsNumbers)
+                {
+                    checkSheetName();
+                }
                 info("Обновлние буквенных обозначений закончено.");
-
-                //model.WindowRedraw();
+                model.WindowRedraw();
                 model.GraphicsRedraw2();
                 errorsChecking();
             }
