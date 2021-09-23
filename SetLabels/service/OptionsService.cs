@@ -29,6 +29,23 @@ namespace SetLabels
             return xDoc;
         }
 
+        public string isSheetsNames()
+        {
+            XmlDocument xDoc = getFile(swPath);
+            XmlElement xRoot = xDoc.DocumentElement;
+            XmlNode xSheet = xRoot.SelectSingleNode("sheets");
+            return xSheet.InnerText;
+        }
+
+        public string isLinkGtols()
+        {
+            XmlDocument xDoc = getFile(swPath);
+            XmlElement xRoot = xDoc.DocumentElement;
+            XmlNode xGtol = xRoot.SelectSingleNode("linkgtols");
+            return xGtol.InnerText;
+        }
+
+
         public string GetLetters()
         {
             XmlDocument xDoc = getFile(swPath);

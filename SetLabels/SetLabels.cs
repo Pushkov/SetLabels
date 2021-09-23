@@ -1,4 +1,5 @@
-﻿using SolidWorks.Interop.sldworks;
+﻿using SetLabels.service;
+using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ namespace SetLabels
 {
     class SetLabels
     {
+        private const string VERSION = "2.3.1";
+
         private SldWorks swApp;
         private string swPath;
         private SetLabelsForm form;
@@ -26,6 +29,8 @@ namespace SetLabels
         string exlude = "ЙЗХЪЫЬОЧ";
         private bool isColor = true;
         private bool isOut = true;
+        private bool isSheetsNumbers = true;
+        private bool isLinkGtols = true;
 
         public SetLabels(SldWorks _app, string _path, SetLabelsForm _form)
         {
@@ -38,6 +43,7 @@ namespace SetLabels
 
         private void initOnce()
         {
+            form.Text = "Set Labels v." + VERSION;
             viewService = new ViewService();
             gtolService = new GtolService();
             surfaceService = new SurfaceService();
@@ -46,6 +52,7 @@ namespace SetLabels
             initFieldsColors();
             hasColor();
             hasOut();
+            initTestOptions();
             drawTitle();
         }
 
@@ -88,6 +95,20 @@ namespace SetLabels
         {
             isOut = optionsService.isOut();
             form.hasOut(isOut);
+        }
+
+        private void initTestOptions()
+        {
+            try
+            {
+                isSheetsNumbers = optionsService.isSheetsNames().Equals("1");
+                isLinkGtols = optionsService.isLinkGtols().Equals("1");
+            }
+            catch
+            {
+                MessageBox.Show("Проблема загрузки файла настроек. \r\n Буквы исключенные из обозначения видов, заданы по умолчанию.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                exlude = "ЙЗХЪЫЬОЧ";
+            }
         }
 
         private void clearPanels()
@@ -523,5 +544,14 @@ namespace SetLabels
         {
             return getLinkedName(view);
         }
+
+        public void checkSheetName()
+        {
+            ModelDoc2 model = swApp.ActiveDoc;
+            DrawingDoc drw = (DrawingDoc)model;
+            SheetManager mgr = new SheetManager();
+            mgr.controlSheetNumber(ref listViews, drw.GetSheetNames());
+        }
+
     }
 }

@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <settings>
   <letters>ЙЗХЪЫЬОЧ</letters>
+  <sheets>1</sheets>
+  <linkgtols>1</linkgtols>
   <out>0</out>
   <color>1</color>
   <projColor>#A194B3</projColor>

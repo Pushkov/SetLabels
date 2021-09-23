@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="model\DatumTagExtended.cs" />
+    <Compile Include="service\SheetManager.cs" />
     <Compile Include="utils\DrawingViewType.cs" />
     <Compile Include="model\GtolExtended.cs" />
     <Compile Include="service\GtolService.cs" />
