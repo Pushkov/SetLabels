@@ -11,7 +11,7 @@ namespace SetLabels
 {
     class SetLabels
     {
-        private const string VERSION = "2.3.1";
+        private const string VERSION = "2.4.0";
 
         private SldWorks swApp;
         private string swPath;
@@ -131,6 +131,8 @@ namespace SetLabels
                     labelService.generateLabels(ref listViews, isOut);
                     drawAllLists(listViews);
                     info("Чтение буквенных меток закончено.");
+
+
                 }
                 catch
                 {
@@ -151,7 +153,7 @@ namespace SetLabels
                 setGraficsUpdate(false);
                 model.SetAddToDB(true);
                 model.SetDisplayWhenAdded(false);
-                info("Идет обновлние буквенных обозначений");
+                info("Идет обновление буквенных обозначений");
                 labelService.setLabelsToViews(ref listViews);
                 if (isLinkGtols)
                 {
@@ -161,9 +163,12 @@ namespace SetLabels
                 {
                     checkSheetName();
                 }
-                info("Обновлние буквенных обозначений закончено.");
+                info("Обновление буквенных обозначений закончено.");
+                //model.Rebuild(1);
+                (model as DrawingDoc).ForceRebuild();
+
                 model.WindowRedraw();
-                model.GraphicsRedraw2();
+                //model.GraphicsRedraw2();
                 errorsChecking();
             }
             finally
@@ -185,7 +190,7 @@ namespace SetLabels
             }
             else
             {
-                form.exit();
+                //form.exit();
                 info("ВСЕ МЕТКИ ПЕРЕИМНОВАНЫ");
             }
         }
@@ -552,7 +557,7 @@ namespace SetLabels
             ModelDoc2 model = swApp.ActiveDoc;
             DrawingDoc drw = (DrawingDoc)model;
             SheetManager mgr = new SheetManager();
-            mgr.controlSheetNumber(ref listViews, drw.GetSheetNames());
+            mgr.controlSheetNumber(ref listViews, drw.GetSheetNames(), swApp.ActiveDoc);
         }
 
     }
