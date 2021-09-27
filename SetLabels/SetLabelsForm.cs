@@ -147,11 +147,6 @@ namespace SetLabels
         {
             setLabels.setSurfaceNote();
         }
-
-        private void btnDelSurf_Click(object sender, EventArgs e)
-        {
-            setLabels.removeSurfaceNote();
-        }
         #endregion
 
         #region INTERFACE
@@ -230,7 +225,9 @@ namespace SetLabels
 
         }
 
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
 
-
+        }
     }
 }
