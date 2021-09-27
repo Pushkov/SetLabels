@@ -11,7 +11,7 @@ namespace SetLabels
 {
     class SetLabels
     {
-        private const string VERSION = "2.4.0";
+        private const string VERSION = "2.4.2";
 
         private SldWorks swApp;
         private string swPath;
@@ -121,6 +121,8 @@ namespace SetLabels
             ModelDoc2 model = swApp.IActiveDoc2;
             if (isDrawing(model))
             {
+                DrawingDoc swDrawing = (DrawingDoc)model;
+                string currentSheet = swDrawing.GetCurrentSheet().GetName();
                 try
                 {
                     setGraficsUpdate(false);
@@ -140,6 +142,7 @@ namespace SetLabels
                 }
                 finally
                 {
+                    swDrawing.ActivateSheet(currentSheet);
                     setGraficsUpdate(true);
                 }
             }
@@ -148,6 +151,8 @@ namespace SetLabels
         public void setLabels()
         {
             ModelDoc2 model = swApp.IActiveDoc2;
+            DrawingDoc swDrawing = (DrawingDoc)model;
+            string currentSheet = swDrawing.GetCurrentSheet().GetName();
             try
             {
                 setGraficsUpdate(false);
@@ -173,6 +178,7 @@ namespace SetLabels
             }
             finally
             {
+                swDrawing.ActivateSheet(currentSheet);
                 model.SetAddToDB(false);
                 model.SetDisplayWhenAdded(true);
                 setGraficsUpdate(true);
@@ -190,7 +196,7 @@ namespace SetLabels
             }
             else
             {
-                //form.exit();
+                form.exit();
                 info("ВСЕ МЕТКИ ПЕРЕИМНОВАНЫ");
             }
         }
@@ -558,6 +564,11 @@ namespace SetLabels
             DrawingDoc drw = (DrawingDoc)model;
             SheetManager mgr = new SheetManager();
             mgr.controlSheetNumber(ref listViews, drw.GetSheetNames(), swApp.ActiveDoc);
+        }
+
+
+        public void testRemoveLabels()
+        {
         }
 
     }

@@ -15,6 +15,7 @@ namespace SetLabels
         public void readViews(ModelDoc2 model, ref ListViews list)
         {
             DrawingDoc swDrawing = (DrawingDoc)model;
+            //string currentSheet = swDrawing.GetCurrentSheet().GetName();
             string[] arrSheetName = (string[])swDrawing.GetSheetNames();
             foreach(string sheetName in arrSheetName)
             {
@@ -73,6 +74,7 @@ namespace SetLabels
                     view = view.IGetNextView();
                 }
             }
+            //swDrawing.ActivateSheet(currentSheet);
         }
 
         private ViewExtended createExtView(IView view, int viewId)
