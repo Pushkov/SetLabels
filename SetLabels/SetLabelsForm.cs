@@ -1,6 +1,8 @@
-﻿using SolidWorks.Interop.sldworks;
+﻿using SetLabels.service;
+using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 using System;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -203,6 +205,32 @@ namespace SetLabels
         {
             Application.Exit();
         }
+
+
+
         #endregion
+
+        private void btnTest1_Click(object sender, EventArgs e)
+        {
+            ModelDoc2 model = swApp.ActiveDoc;
+            SelectionMgr selMgr = model.SelectionManager;
+
+            if (selMgr.GetSelectedObjectType3(1, -1) == (int)swSelectType_e.swSelNOTES)
+                //if (selMgr.GetSelectedObjectType3(1, -1) == (int)swSelectType_e.swSelDRAWINGVIEWS)
+            {
+                Note view = (Note)selMgr.GetSelectedObject6(1, 0);
+                //IView view = (IView)selMgr.GetSelectedObject6(1, 0);
+                //view.PropertyLinkedText += " (2)";
+                info("note name: " + view.GetName());
+            }
+            else
+            {
+                info(" вид не выбран");
+            }
+
+        }
+
+
+
     }
 }

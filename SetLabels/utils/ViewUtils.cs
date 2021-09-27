@@ -86,6 +86,10 @@ namespace SetLabels.utils
             return false;
         }
 
+
+
+
+
         public static string getLinkedName(IView view)
         {
             string result = "";
@@ -111,13 +115,13 @@ namespace SetLabels.utils
                 {
                     ann_name = "<link>" + linkedView + "</link>" + ann_name;
                     ann.SetName(ann_name);
-                    Console.WriteLine("if  linkView -" + linkedView + ";  ann_name - " + ann_name);
+                    //Console.WriteLine("if  linkView -" + linkedView + ";  ann_name - " + ann_name);
                 }
             }
             else
             {
                 ann_name = Regex.Split(ann_name, "</link>")[1];
-                Console.WriteLine("else  linkView -" + linkedView + ";  ann_name[1] - " + ann_name);
+                //Console.WriteLine("else  linkView -" + linkedView + ";  ann_name[1] - " + ann_name);
 
                 if (!"".Equals(linkedView))
                 {
@@ -136,5 +140,8 @@ namespace SetLabels.utils
             swDwgPaperSizes_e paperSize = (swDwgPaperSizes_e)sheet.GetSize(ref width, ref height);
             return (poz[0] > 0 && poz[0] < width) && (poz[1] > 0 && poz[1] < height);
         }
+
+
+
     }
 }

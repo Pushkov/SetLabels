@@ -1,4 +1,5 @@
-﻿using SolidWorks.Interop.sldworks;
+﻿using SetLabels.service;
+using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ namespace SetLabels
 {
     class SetLabels
     {
+        private const string VERSION = "2.4.0";
+
         private SldWorks swApp;
         private string swPath;
         private SetLabelsForm form;
@@ -26,6 +29,8 @@ namespace SetLabels
         string exlude = "ЙЗХЪЫЬОЧ";
         private bool isColor = true;
         private bool isOut = true;
+        private bool isSheetsNumbers = true;
+        private bool isLinkGtols = true;
 
         public SetLabels(SldWorks _app, string _path, SetLabelsForm _form)
         {
@@ -38,6 +43,7 @@ namespace SetLabels
 
         private void initOnce()
         {
+            form.Text = "Set Labels v." + VERSION;
             viewService = new ViewService();
             gtolService = new GtolService();
             surfaceService = new SurfaceService();
@@ -46,6 +52,7 @@ namespace SetLabels
             initFieldsColors();
             hasColor();
             hasOut();
+            initTestOptions();
             drawTitle();
         }
 
@@ -90,6 +97,20 @@ namespace SetLabels
             form.hasOut(isOut);
         }
 
+        private void initTestOptions()
+        {
+            try
+            {
+                isSheetsNumbers = optionsService.isSheetsNames().Equals("1");
+                isLinkGtols = optionsService.isLinkGtols().Equals("1");
+            }
+            catch
+            {
+                MessageBox.Show("Проблема загрузки файла настроек. \r\n Буквы исключенные из обозначения видов, заданы по умолчанию.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                exlude = "ЙЗХЪЫЬОЧ";
+            }
+        }
+
         private void clearPanels()
         {
             form.clearPanels();
@@ -107,11 +128,11 @@ namespace SetLabels
                     clearPanels();
                     listViews = new ListViews();
                     viewService.readViews(model, ref listViews);
-                    // ToDo связь допусков и баз   или тут или там
                     labelService.generateLabels(ref listViews, isOut);
-
                     drawAllLists(listViews);
                     info("Чтение буквенных меток закончено.");
+
+
                 }
                 catch
                 {
@@ -132,15 +153,22 @@ namespace SetLabels
                 setGraficsUpdate(false);
                 model.SetAddToDB(true);
                 model.SetDisplayWhenAdded(false);
-                info("Идет обновлние буквенных обозначений");
+                info("Идет обновление буквенных обозначений");
                 labelService.setLabelsToViews(ref listViews);
-                // ToDo связь допусков и баз   или тут или там
-                gtolService.relinkGtolByTatumtag(ref listViews);
-                //
-                info("Обновлние буквенных обозначений закончено.");
+                if (isLinkGtols)
+                {
+                    gtolService.relinkGtolByTatumtag(ref listViews);
+                }
+                if (isSheetsNumbers)
+                {
+                    checkSheetName();
+                }
+                info("Обновление буквенных обозначений закончено.");
+                //model.Rebuild(1);
+                (model as DrawingDoc).ForceRebuild();
 
-                //model.WindowRedraw();
-                model.GraphicsRedraw2();
+                model.WindowRedraw();
+                //model.GraphicsRedraw2();
                 errorsChecking();
             }
             finally
@@ -162,7 +190,7 @@ namespace SetLabels
             }
             else
             {
-                form.exit();
+                //form.exit();
                 info("ВСЕ МЕТКИ ПЕРЕИМНОВАНЫ");
             }
         }
@@ -523,5 +551,14 @@ namespace SetLabels
         {
             return getLinkedName(view);
         }
+
+        public void checkSheetName()
+        {
+            ModelDoc2 model = swApp.ActiveDoc;
+            DrawingDoc drw = (DrawingDoc)model;
+            SheetManager mgr = new SheetManager();
+            mgr.controlSheetNumber(ref listViews, drw.GetSheetNames(), swApp.ActiveDoc);
+        }
+
     }
 }
