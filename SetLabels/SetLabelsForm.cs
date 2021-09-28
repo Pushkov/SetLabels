@@ -227,7 +227,37 @@ namespace SetLabels
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
+            ModelDoc2 model = swApp.ActiveDoc;
+            SelectionMgr selMgr = model.SelectionManager;
 
+            if (selMgr.GetSelectedObjectType3(1, -1) == (int)swSelectType_e.swSelDRAWINGVIEWS)
+            {
+                IView view = (IView)selMgr.GetSelectedObject6(1, 0);
+                if(view.Type == (int) swDrawingViewTypes_e.swDrawingProjectedView)
+                {
+                    double[] coords;
+                    IProjectionArrow arr = view.GetProjectionArrow();
+                    coords = arr.GetCoordinates();
+
+                    DrawingDoc drw = (DrawingDoc)model;
+                    string currName = view.GetName2();
+                    string sheet = view.GetBaseView().Sheet.GetName();
+                    drw.ActivateSheet(sheet);
+                    string viewName = view.GetBaseView().GetName2();
+                    drw.ActivateView(viewName);
+                    string sheetIndex = "(2)";
+                    
+                    Note note1 = drw.CreateText2(sheetIndex, coords[21] + 0.005, coords[22] + 0.0045, coords[23], 0.007, 0);
+                }
+                else
+                {
+                    info(" вид не тот");
+                }
+            }
+            else
+            {
+                info(" вид не выбран");
+            }
         }
     }
 }

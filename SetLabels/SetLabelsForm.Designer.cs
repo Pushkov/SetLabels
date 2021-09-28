@@ -190,7 +190,6 @@
             this.btnTest1.TabIndex = 14;
             this.btnTest1.Text = "add";
             this.btnTest1.UseVisualStyleBackColor = true;
-            this.btnTest1.Visible = false;
             this.btnTest1.Click += new System.EventHandler(this.btnTest1_Click);
             // 
             // btnRemove
@@ -202,7 +201,6 @@
             this.btnRemove.TabIndex = 15;
             this.btnRemove.Text = "remove";
             this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Visible = false;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // SetLabelsForm
