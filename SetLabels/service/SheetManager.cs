@@ -83,14 +83,24 @@ namespace SetLabels.service
                 case (swDrawingViewTypes_e.swDrawingProjectedView):
                     IProjectionArrow arr = view.GetProjectionArrow();
                     coords = arr.GetCoordinates();
+                    coords[0] = coords[21] + 0.005;
+                    coords[1] = coords[22] + 0.0045;
                     break;
                 case (swDrawingViewTypes_e.swDrawingSectionView):
                     DrSection section = view.GetSection();
-                    coords = section.GetArrowInfo();
+                    //coords = section.GetArrowInfo();
+                    coords = section.GetTextInfo();
+                    coords[0] = coords[3] + 0.005;
+                    coords[1] = coords[4];
+                    //section.GetL
+
                     break;
                 case (swDrawingViewTypes_e.swDrawingDetailView):
                     DetailCircle circle = view.GetDetail();
                     circle.GetLabelPosition(out coords[0], out coords[1]);
+                    string lab = circle.GetLabel().Trim();
+                    coords[0] = coords[0] + 0.0035;
+                    coords[1] = coords[1] + 0.0045;
                     break;
             }
             string currName = view.GetName2();

@@ -11,7 +11,7 @@ namespace SetLabels
 {
     class SetLabels
     {
-        private const string VERSION = "2.4.2";
+        private const string VERSION = "2.5.0";
 
         private SldWorks swApp;
         private string swPath;
@@ -138,7 +138,7 @@ namespace SetLabels
                 }
                 catch
                 {
-                    info("ГДЕ_ТО КОСЯК !!!");
+                    info("ГДЕ_ТО КОСЯК ПРИ ЧТЕНИИ!!!");
                 }
                 finally
                 {
@@ -168,13 +168,14 @@ namespace SetLabels
                 {
                     checkSheetName();
                 }
-                info("Обновление буквенных обозначений закончено.");
-                //model.Rebuild(1);
                 (model as DrawingDoc).ForceRebuild();
-
                 model.WindowRedraw();
-                //model.GraphicsRedraw2();
+                info("Обновление буквенных обозначений закончено.");
                 errorsChecking();
+            }
+            catch
+            {
+                info("ГДЕ_ТО КОСЯК ПРИ ПЕРЕИМЕНОВАНИИ !!!");
             }
             finally
             {
@@ -382,9 +383,7 @@ namespace SetLabels
                 info("index " + index + "  не может быть преобразован в число");
             }
             listViews.getSurfaces()[surfIndex].linkedId = linkedIndex - 1;
-
             listViews.getSurfaces()[surfIndex].isLinked = linkedIndex >= 0;
-            info("index " + index + " link " + listViews.getSurfaces()[surfIndex].linkedId + "  isLink " + listViews.getSurfaces()[surfIndex].isLinked);
             updatePanels();
         }
 
@@ -488,7 +487,6 @@ namespace SetLabels
 
         public void hasColor(bool value)
         {
-            info("COLOR is " + value);
             isColor = value;
             optionsService.setColor(value);
 
@@ -498,7 +496,6 @@ namespace SetLabels
 
         public void hasOut(bool value)
         {
-            info("OUT is " + value);
             isOut = value;
             optionsService.setOut(value);
             clearPanels();
