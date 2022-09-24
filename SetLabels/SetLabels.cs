@@ -11,7 +11,7 @@ namespace SetLabels
 {
     class SetLabels
     {
-        private const string VERSION = "2.5.0";
+        private const string VERSION = "2.5.1";
 
         private SldWorks swApp;
         private string swPath;
