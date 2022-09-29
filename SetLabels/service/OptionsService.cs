@@ -71,6 +71,8 @@ namespace SetLabels
             return xLet.InnerText.Equals("1");
         }
 
+
+
         public void setColor(bool val)
         {
             XmlDocument xDoc = getFile(swPath);
@@ -125,6 +127,25 @@ namespace SetLabels
             }
 
             return list;
+        }
+
+        public double readSheetLabelFontSize()
+        {
+            double data;
+            XmlDocument xDoc = getFile(swPath);
+            XmlElement xRoot = xDoc.DocumentElement;
+            try
+            {
+                XmlNode xLet = xRoot.SelectSingleNode("sheet_label_font_size");
+                data = double.Parse(xLet.InnerText);
+            }
+            catch
+            {
+                data = 7;
+            }
+            
+
+            return data / 1000;
         }
     }
 }

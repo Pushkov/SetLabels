@@ -90,8 +90,30 @@ namespace SetLabels.service
                     DrSection section = view.GetSection();
                     //coords = section.GetArrowInfo();
                     coords = section.GetTextInfo();
-                    coords[0] = coords[3] + 0.005;
-                    coords[1] = coords[4];
+                    double c0 = 0;
+                    double c1 = 0;
+                    if (coords[1] > coords[4])
+                    {
+                        c0 = coords[0];
+                        c1 = coords[1];
+                    }
+                    else
+                    {
+                        if(coords[0] > coords[3])
+                        {
+                            c0 = coords[0];
+                            c1 = coords[1];
+                        }
+                        else
+                        {
+                            c0 = coords[3];
+                            c1 = coords[4];
+                        }
+
+                    }
+
+                    coords[0] = c0 + 0.005;
+                    coords[1] = c1;
                     //section.GetL
 
                     break;
@@ -109,7 +131,7 @@ namespace SetLabels.service
             string viewName = view.GetBaseView().GetName2();
             drw.ActivateView(viewName);
             string sheetIndex = "(" + (sheets.ToList().IndexOf(view.Sheet.GetName()) + 1) + ")";
-            Note note = drw.CreateText2(sheetIndex, coords[0], coords[1], coords[2], 0.007, 0);
+            Note note = drw.CreateText2(sheetIndex, coords[0], coords[1], coords[2], SetLabels.SHEET_LABEL_FONT_SIZE, 0);
             note.SetName("<shname>" + view.GetUniqueName());
         }
     }

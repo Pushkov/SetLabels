@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <settings>
+  <sheet_label_font_size>7</sheet_label_font_size>
   <letters>ЙЗХЪЫЬОЧ</letters>
   <sheets>1</sheets>
   <linkgtols>1</linkgtols>

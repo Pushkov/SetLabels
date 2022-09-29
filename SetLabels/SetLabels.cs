@@ -11,7 +11,9 @@ namespace SetLabels
 {
     class SetLabels
     {
-        private const string VERSION = "2.5.1";
+        private const string VERSION = "2.5.2";
+
+        public static double SHEET_LABEL_FONT_SIZE = 0.007;
 
         private SldWorks swApp;
         private string swPath;
@@ -54,6 +56,7 @@ namespace SetLabels
             hasOut();
             initTestOptions();
             drawTitle();
+            SHEET_LABEL_FONT_SIZE = optionsService.readSheetLabelFontSize();
         }
 
         private void initExludeLetters()

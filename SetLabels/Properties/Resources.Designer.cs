@@ -79,5 +79,39 @@ namespace SetLabels.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+        ///&lt;settings&gt;
+        ///  &lt;sheet_label_font_size&gt;7&lt;/sheet_label_font_size&gt;
+        ///  &lt;letters&gt;ЙЗХЪЫЬОЧ&lt;/letters&gt;
+        ///  &lt;sheets&gt;1&lt;/sheets&gt;
+        ///  &lt;linkgtols&gt;1&lt;/linkgtols&gt;
+        ///  &lt;out&gt;0&lt;/out&gt;
+        ///  &lt;color&gt;1&lt;/color&gt;
+        ///  &lt;projColor&gt;#A194B3&lt;/projColor&gt;
+        ///  &lt;auxColor&gt;#f3a3ab&lt;/auxColor&gt;
+        ///  &lt;sectColor&gt;#c5f9c6&lt;/sectColor&gt;
+        ///  &lt;detColor&gt;#FFFBCE&lt;/detColor&gt;
+        ///  &lt;gtolColor&gt;#bdf7ee&lt;/gtolColor&gt;
+        ///  &lt;surfColor&gt;#9cadfa&lt;/surfColor&gt;
+        ///  &lt;outColor&gt;#8B9EAA&lt;/outColor&gt;
+        ///&lt;/settings&gt;.
+        /// </summary>
+        internal static string options {
+            get {
+                return ResourceManager.GetString("options", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] SetLabels {
+            get {
+                object obj = ResourceManager.GetObject("SetLabels", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }
